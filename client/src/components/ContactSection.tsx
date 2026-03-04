@@ -1,59 +1,64 @@
-import { useState } from 'react';
-
 interface ContactInfo {
   label: string;
   value: string;
   href: string;
-  icon: string;
+  icon: React.ReactNode;
 }
+
+/* ── Ícones SVG inline ─────────────────────────────────────────────────── */
+
+const EmailIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-cyan-400">
+    <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2-8 5-8-5h16zm0 12H4V8.236l8 5 8-5V18z" />
+  </svg>
+);
+
+const WhatsAppIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-green-400">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+  </svg>
+);
+
+const LinkedInIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-blue-400">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
+
+const GitHubIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-gray-300">
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+  </svg>
+);
 
 const contactInfo: ContactInfo[] = [
   {
     label: 'Email',
     value: 'igor.nods@gmail.com',
     href: 'mailto:igor.nods@gmail.com',
-    icon: '✉️',
+    icon: <EmailIcon />,
   },
   {
-    label: 'Telefone',
+    label: 'WhatsApp',
     value: '(11) 94264-7380',
-    href: 'tel:+5511942647380',
-    icon: '📱',
+    href: 'https://wa.me/5511942647380?text=Ol%C3%A1%20Igor%2C%20vi%20seu%20curr%C3%ADculo%20e%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade.',
+    icon: <WhatsAppIcon />,
   },
   {
     label: 'LinkedIn',
     value: 'Igor Leal Nodari',
     href: 'https://www.linkedin.com/in/igor-leal-nodari-512b7914a/',
-    icon: '💼',
+    icon: <LinkedInIcon />,
   },
   {
     label: 'GitHub',
     value: 'igornodari',
     href: 'https://github.com/igornodari',
-    icon: '💻',
+    icon: <GitHubIcon />,
   },
 ];
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '' });
-      setSubmitted(false);
-    }, 3000);
-  };
-
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-[#1a1a3e] to-[#0a0e27]">
       <div className="container mx-auto px-4">
@@ -65,121 +70,40 @@ export default function ContactSection() {
           <span className="block h-1 w-24 bg-gradient-to-r from-cyan-400 to-pink-500 mx-auto rounded-full" />
         </header>
 
-        {/* Layout principal (Flex responsivo) */}
-        <div className="flex flex-col lg:flex-row gap-12">
-          {/* Coluna esquerda */}
-          <div className="flex-1 min-w-0">
-            <p className="text-gray-300 text-lg leading-relaxed mb-8">
-              Estou sempre aberto a novas oportunidades e desafios. Sinta-se livre para entrar em contato comigo através
-              de qualquer um dos canais abaixo.
-            </p>
+        {/* Descrição + Cards de contato centralizados */}
+        <div className="max-w-2xl mx-auto">
+          <p className="text-gray-300 text-lg leading-relaxed mb-8 text-center">
+            Estou sempre aberto a novas oportunidades e desafios. Sinta-se livre para entrar em
+            contato comigo através de qualquer um dos canais abaixo.
+          </p>
 
-            <div className="flex flex-col gap-4">
-              {contactInfo.map((info) => (
-                <a
-                  key={info.label}
-                  href={info.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass block w-full p-6 rounded-lg border border-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300 hover:translate-x-2 group"
-                >
-                  <div className="flex items-center gap-4">
-                    {/* Ícone com largura fixa */}
-                    <span className="w-10 h-10 shrink-0 flex items-center justify-center text-2xl">
-                      {info.icon}
+          <div className="flex flex-col gap-4">
+            {contactInfo.map((info) => (
+              <a
+                key={info.label}
+                href={info.href}
+                target={info.href.startsWith('mailto') ? '_self' : '_blank'}
+                rel="noopener noreferrer"
+                className="glass block w-full p-6 rounded-lg border border-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300 hover:translate-x-2 group"
+              >
+                <div className="flex items-center gap-4">
+                  {/* Ícone SVG com largura fixa */}
+                  <span className="w-10 h-10 shrink-0 flex items-center justify-center">
+                    {info.icon}
+                  </span>
+
+                  {/* Texto */}
+                  <div className="flex flex-col flex-1 min-w-0">
+                    <span className="text-cyan-400 text-xs font-semibold uppercase tracking-wider">
+                      {info.label}
                     </span>
-
-                    {/* Texto ocupa o resto */}
-                    <div className="flex flex-col flex-1 min-w-0">
-                      <span className="text-cyan-400 text-xs font-semibold uppercase tracking-wider">
-                        {info.label}
-                      </span>
-
-                      <span className="text-white font-medium group-hover:text-cyan-400 transition-colors break-words">
-                        {info.value}
-                      </span>
-                    </div>
+                    <span className="text-white font-medium group-hover:text-cyan-400 transition-colors break-words">
+                      {info.value}
+                    </span>
                   </div>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Coluna direita (Form) */}
-          <div className="flex-1 min-w-0 glass p-8 rounded-xl border border-cyan-500/20">
-            {submitted ? (
-              <div className="min-h-[320px] flex flex-col items-center justify-center text-center">
-                <div className="text-5xl mb-4">✓</div>
-                <h3 className="text-2xl font-bold text-cyan-400 mb-2">Mensagem Enviada!</h3>
-                <p className="text-gray-300">Obrigado por entrar em contato. Responderei em breve.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor="name"
-                    className="text-sm font-semibold text-cyan-400 uppercase tracking-wider"
-                  >
-                    Nome
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-cyan-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300"
-                    placeholder="Seu nome"
-                  />
                 </div>
-
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-semibold text-cyan-400 uppercase tracking-wider"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-cyan-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300"
-                    placeholder="seu.email@exemplo.com"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor="message"
-                    className="text-sm font-semibold text-cyan-400 uppercase tracking-wider"
-                  >
-                    Mensagem
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-cyan-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 resize-none"
-                    placeholder="Sua mensagem aqui..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-pink-500 text-gray-900 font-bold rounded-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.99] shadow-lg shadow-cyan-500/40 hover:shadow-pink-500/40"
-                >
-                  Enviar Mensagem
-                </button>
-              </form>
-            )}
+              </a>
+            ))}
           </div>
         </div>
       </div>
