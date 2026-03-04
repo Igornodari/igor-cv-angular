@@ -20,6 +20,7 @@ import LanguagesSection from "./components/LanguagesSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Footer />
           </div>
           <SpeedInsights />
+          <Analytics />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
